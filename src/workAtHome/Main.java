@@ -52,12 +52,13 @@ public class Main {
         FileReader fr = new FileReader(fileName);
         Scanner scan = new Scanner(fr);
         dataFromConfigFile = scan.nextLine();
-
         fr.close();
+
         wordsFromFile = dataFromConfigFile.split(":");
         mainClassName = wordsFromFile[0];
         interfaceName = wordsFromFile[1];
         injectedClassName = wordsFromFile[2];
+
 
         Class newAClass = Class.forName(mainClassName);
         Field[] fields = newAClass.getDeclaredFields();
@@ -75,6 +76,5 @@ public class Main {
         Method[] methods = newAClass.getDeclaredMethods();
         Method method = methods[0];
         method.invoke(newAObject);
-
     }
 }
